@@ -19,7 +19,7 @@ fun jsonObject(init: JsonObject.() -> Unit): JsonObject {
 fun jsonArrayOf(vararg item: Any?): JsonArray {
     val jsonArray = JsonArray()
     item.forEach {
-        if (!(it is Boolean || it is Char || it is String || it is Number || it is JsonElement || it == null)) {
+        if (!it.isJsonAble) {
             throw IllegalArgumentException("Items must be a boolean, char, string, number, or JsonElement.")
         }
         when (it) {
@@ -77,3 +77,6 @@ fun JsonObject.nestedObject(name: String, init: JsonObject.() -> Unit) {
 fun JsonObject.nestedArray(name: String, jsonArray: JsonArray) {
     add(name, jsonArray)
 }
+
+private val Any?.isJsonAble: Boolean
+    get() = this is Boolean || this is Char || this is String || this is Number || this is JsonElement || this == null

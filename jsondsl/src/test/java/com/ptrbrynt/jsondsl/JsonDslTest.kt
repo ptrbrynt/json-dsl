@@ -6,9 +6,14 @@ import com.google.gson.JsonObject
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-
+/**
+ * Tests JSON DSL API
+ */
 class JsonDslTest {
 
+    /**
+     * Tests that the [jsonObject] function creates a [JsonObject]
+     */
     @Test
     fun basicJsonObject() {
         val json: JsonObject = jsonObject {}
@@ -16,6 +21,9 @@ class JsonDslTest {
         assertEquals(JsonObject(), json)
     }
 
+    /**
+     * Tests that the [jsonArrayOf] function creates a [JsonArray]
+     */
     @Test
     fun basicJsonArray() {
         val json: JsonArray = jsonArrayOf()
@@ -23,6 +31,9 @@ class JsonDslTest {
         assertEquals(JsonArray(), json)
     }
 
+    /**
+     * Tests creation of a [JsonObject] with a [Char] property
+     */
     @Test
     fun jsonObject_WithCharProperty() {
         val json = jsonObject {
@@ -36,6 +47,9 @@ class JsonDslTest {
         assertEquals(expected, json)
     }
 
+    /**
+     * Tests creation of a [JsonObject] with a [Number] property
+     */
     @Test
     fun jsonObject_WithNumberProperty() {
         val json = jsonObject {
@@ -49,6 +63,9 @@ class JsonDslTest {
         assertEquals(expected, json)
     }
 
+    /**
+     * Tests creation of a [JsonObject] with a [String] property
+     */
     @Test
     fun jsonObject_WithStringProperty() {
         val json = jsonObject {
@@ -62,6 +79,9 @@ class JsonDslTest {
         assertEquals(expected, json)
     }
 
+    /**
+     * Tests creation of a [JsonObject] with a [Boolean] property
+     */
     @Test
     fun jsonObject_WithBooleanProperty() {
         val json = jsonObject {
@@ -75,6 +95,9 @@ class JsonDslTest {
         assertEquals(expected, json)
     }
 
+    /**
+     * Tests creation of a [JsonObject] with a nested [JsonObject]
+     */
     @Test
     fun jsonObject_WithNestedObject() {
         val json = jsonObject {
@@ -92,6 +115,9 @@ class JsonDslTest {
         assertEquals(expected, json)
     }
 
+    /**
+     * Tests creation of a [JsonObject] with a nested [JsonArray]
+     */
     @Test
     fun jsonObject_WithNestedArray() {
         val json = jsonObject {
@@ -108,6 +134,9 @@ class JsonDslTest {
         assertEquals(expected, json)
     }
 
+    /**
+     * Tests the creation of a [JsonArray] with a variety of elements
+     */
     @Test
     fun jsonArray_WithProperties() {
         val json = jsonArrayOf(
@@ -140,11 +169,12 @@ class JsonDslTest {
             add(JsonNull.INSTANCE)
         }
 
-        System.out.println(expected.toString())
-
         assertEquals(expected, json)
     }
 
+    /**
+     * Tests that creating a [JsonArray] with invalid arguments throws an [IllegalArgumentException]
+     */
     @Test(expected = IllegalArgumentException::class)
     fun jsonArray_WithIllegalArguments() {
         jsonArrayOf(emptyList<Long>())
