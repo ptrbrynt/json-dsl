@@ -3,7 +3,7 @@
 [![Release](https://jitpack.io/v/ptrbrynt/json-dsl.svg)](https://jitpack.io/#ptrbrynt/json-dsl)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cd498007c12b4e758b3a72dcda72211c)](https://www.codacy.com/app/ptrbrynt/json-dsl?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ptrbrynt/json-dsl&amp;utm_campaign=Badge_Grade)
 
-A type-safe builder for creating JSON object and arrays in Kotlin.
+A type-safe builder for creating JSON objects and arrays in Kotlin.
 
 ## Installation
 
