@@ -21,6 +21,9 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "jsondsl/build.gradle" }}
       - run:
+          name: Install Fastlane
+          command: bundle check || bundle update && bundle install --path vendor/bundle
+      - run:
           name: Run Tests
           command: bundle exec fastlane test
       - store_artifacts:
