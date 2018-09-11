@@ -1,6 +1,9 @@
+apply plugin: 'maven'
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
 apply plugin: 'jacoco'
+
+group = 'com.github.ptrbynt'
 
 jacoco {
     toolVersion = '0.8.0'
