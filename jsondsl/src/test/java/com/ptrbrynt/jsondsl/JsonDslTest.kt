@@ -1,6 +1,7 @@
 package com.ptrbrynt.jsondsl
 
 import com.google.gson.JsonArray
+import com.google.gson.JsonElement
 import com.google.gson.JsonNull
 import com.google.gson.JsonObject
 import org.junit.Assert.assertEquals
@@ -96,6 +97,38 @@ class JsonDslTest {
     }
 
     /**
+     * Tests creation of a [JsonObject] with a null property
+     */
+    @Test
+    fun jsonObject_WithNullProperty() {
+        val json = jsonObject {
+            property("null", null)
+        }
+
+        val expected = JsonObject().apply {
+            add("null", JsonNull.INSTANCE)
+        }
+
+        assertEquals(expected, json)
+    }
+
+    /**
+     * Tests creation of a [JsonObject] with a [JsonElement] property
+     */
+    @Test
+    fun jsonObject_WithJsonElementProperty() {
+        val json = jsonObject {
+            property("element", jsonArrayOf() as JsonElement)
+        }
+
+        val expected = JsonObject().apply {
+            add("element", JsonArray())
+        }
+
+        assertEquals(expected, json)
+    }
+
+    /**
      * Tests creation of a [JsonObject] with a nested [JsonObject]
      */
     @Test
@@ -151,7 +184,13 @@ class JsonDslTest {
                         19423,
                         18432
                 ),
-                null
+                null,
+                object {
+                    val item = "Hello"
+                    val another = "Goodbye"
+
+                    override fun toString() = "$item: $another"
+                }
         )
 
         val expected = JsonArray().apply {
@@ -167,6 +206,7 @@ class JsonDslTest {
                 add(18432)
             })
             add(JsonNull.INSTANCE)
+            add("Hello: Goodbye")
         }
 
         assertEquals(expected, json)

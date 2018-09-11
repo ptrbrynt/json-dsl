@@ -53,12 +53,12 @@ fun JsonObject.property(name: String, value: Any?) {
 fun JsonObject.nestedObject(name: String, init: JsonObject.() -> Unit) {
     val jsonObject = JsonObject()
     jsonObject.init()
-    add(name, jsonObject)
+    property(name, jsonObject)
 }
 
 /**
  * Adds a [JsonArray] as a nested property to a [JsonObject]
  */
 fun JsonObject.nestedArray(name: String, jsonArray: JsonArray) {
-    add(name, jsonArray)
+    property(name, jsonArray)
 }
