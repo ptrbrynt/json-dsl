@@ -14,18 +14,11 @@ jobs:
 #         name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
 #         command: sudo chmod +x ./gradlew
       - run:
-          name: Download Dependencies
-          command: ./gradlew androidDependencies
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "jsondsl/build.gradle" }}
-      - run:
           name: Install Fastlane
           command: bundle check || bundle update && bundle install --path vendor/bundle
       - run:
           name: Code coverage report
-          command: bundle exec fastlane android coverage
+          command: bundle exec fastlane coverage
       - run:
           name: Run Tests
           command: bundle exec fastlane test

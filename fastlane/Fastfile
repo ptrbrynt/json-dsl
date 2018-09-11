@@ -1,18 +1,14 @@
 update_fastlane
 
-default_platform(:android)
+desc "Runs all the tests"
+lane :test do
+  gradle(task: "test")
+end
 
-platform :android do
-  desc "Runs all the tests"
-  lane :test do
-    gradle(task: "test")
-  end
-
-  desc "Create coverage report"
-  lane :coverage do
-    gradle(task: "jacocoTestReport")
-    sh("sudo apt-get install jq")
-    sh("wget -O ~/codacy-coverage-reporter-assembly-latest.jar $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r .assets[0].browser_download_url)")
-    sh("java -jar ~/codacy-coverage-reporter-assembly-latest.jar report -r ../jsondsl/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml -l Kotlin")
-  end
+desc "Create coverage report"
+lane :coverage do
+  gradle(task: "jacocoTestReport")
+  sh("sudo apt-get install jq")
+  sh("wget -O ~/codacy-coverage-reporter-assembly-latest.jar $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r .assets[0].browser_download_url)")
+  sh("java -jar ~/codacy-coverage-reporter-assembly-latest.jar report -r ../jsondsl/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml -l Kotlin")
 end

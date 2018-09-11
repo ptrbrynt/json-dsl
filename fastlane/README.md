@@ -15,15 +15,14 @@ Install _fastlane_ using
 or alternatively using `brew cask install fastlane`
 
 # Available Actions
-## Android
-### android test
+### test
 ```
-fastlane android test
+fastlane test
 ```
 Runs all the tests
-### android coverage
+### coverage
 ```
-fastlane android coverage
+fastlane coverage
 ```
 Create coverage report
 
