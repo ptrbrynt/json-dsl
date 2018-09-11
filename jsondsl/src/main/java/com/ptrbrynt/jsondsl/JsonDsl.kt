@@ -19,9 +19,6 @@ fun jsonObject(init: JsonObject.() -> Unit): JsonObject {
 fun jsonArrayOf(vararg item: Any?): JsonArray {
     val jsonArray = JsonArray()
     item.forEach {
-        if (!it.isJsonAble) {
-            throw IllegalArgumentException("Items must be a boolean, char, string, number, or JsonElement.")
-        }
         when (it) {
             is Boolean -> jsonArray.add(it)
             is Char -> jsonArray.add(it)
@@ -29,37 +26,25 @@ fun jsonArrayOf(vararg item: Any?): JsonArray {
             is Number -> jsonArray.add(it)
             is JsonElement -> jsonArray.add(it)
             null -> jsonArray.add(JsonNull.INSTANCE)
+            else -> jsonArray.add(it.toString())
         }
     }
     return jsonArray
 }
 
 /**
- * Adds a [Char] property to a [JsonObject]
+ * Adds a property to the [JsonObject] with the given [name] and [value].
  */
-fun JsonObject.property(name: String, value: Char?) {
-    addProperty(name, value)
-}
-
-/**
- * Adds a [Number] property to a [JsonObject]
- */
-fun JsonObject.property(name: String, value: Number?) {
-    addProperty(name, value)
-}
-
-/**
- * Adds a [String] property to a [JsonObject]
- */
-fun JsonObject.property(name: String, value: String?) {
-    addProperty(name, value)
-}
-
-/**
- * Adds a [Boolean] property to a [JsonObject]
- */
-fun JsonObject.property(name: String, value: Boolean?) {
-    addProperty(name, value)
+fun JsonObject.property(name: String, value: Any?) {
+    when (value) {
+        is Char -> addProperty(name, value)
+        is Number -> addProperty(name, value)
+        is String -> addProperty(name, value)
+        is Boolean -> addProperty(name, value)
+        is JsonElement -> add(name, value)
+        null -> add(name, JsonNull.INSTANCE)
+        else -> addProperty(name, value.toString())
+    }
 }
 
 /**
@@ -77,6 +62,3 @@ fun JsonObject.nestedObject(name: String, init: JsonObject.() -> Unit) {
 fun JsonObject.nestedArray(name: String, jsonArray: JsonArray) {
     add(name, jsonArray)
 }
-
-private val Any?.isJsonAble: Boolean
-    get() = this is Boolean || this is Char || this is String || this is Number || this is JsonElement || this == null

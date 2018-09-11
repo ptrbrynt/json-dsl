@@ -171,12 +171,4 @@ class JsonDslTest {
 
         assertEquals(expected, json)
     }
-
-    /**
-     * Tests that creating a [JsonArray] with invalid arguments throws an [IllegalArgumentException]
-     */
-    @Test(expected = IllegalArgumentException::class)
-    fun jsonArray_WithIllegalArguments() {
-        jsonArrayOf(emptyList<Long>())
-    }
 }
