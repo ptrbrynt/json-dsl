@@ -168,6 +168,26 @@ class JsonDslTest {
     }
 
     /**
+     * Tests creation of a [JsonObject] with a complex property
+     */
+    @Test
+    fun jsonObject_WithComplexProperty() {
+        val json = jsonObject {
+            property("complex", object {
+                val thing = "A Thing"
+                val somethingElse = "Hi"
+                override fun toString() = "$thing - $somethingElse"
+            })
+        }
+
+        val expected = JsonObject().apply {
+            addProperty("complex", "A Thing - Hi")
+        }
+
+        assertEquals(expected, json)
+    }
+
+    /**
      * Tests the creation of a [JsonArray] with a variety of elements
      */
     @Test
