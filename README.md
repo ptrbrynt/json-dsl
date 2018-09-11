@@ -45,7 +45,6 @@ val json: JsonObject = jsonObject {
 }
 ```
 
-JSON DSL supports `Boolean`, `String`, `Char`, and `Number` properties.
 
 You can add a nested object like this:
 
