@@ -2,7 +2,6 @@
 
 [![](https://jitpack.io/v/com.ptrbrynt/json-dsl.svg)](https://jitpack.io/#com.ptrbrynt/json-dsl)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cd498007c12b4e758b3a72dcda72211c)](https://www.codacy.com/app/ptrbrynt/json-dsl?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ptrbrynt/json-dsl&amp;utm_campaign=Badge_Grade)
-[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/cd498007c12b4e758b3a72dcda72211c)](https://www.codacy.com/app/ptrbrynt/json-dsl?utm_source=github.com&utm_medium=referral&utm_content=ptrbrynt/json-dsl&utm_campaign=Badge_Coverage)
 [![GitHub license](https://img.shields.io/github/license/ptrbrynt/json-dsl.svg)](https://github.com/ptrbrynt/json-dsl/blob/master/LICENSE)
 [![CircleCI (all branches)](https://img.shields.io/circleci/project/github/ptrbrynt/json-dsl.svg)](https://circleci.com/gh/ptrbrynt/json-dsl)
 
