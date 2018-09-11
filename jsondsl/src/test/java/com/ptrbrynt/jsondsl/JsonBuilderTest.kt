@@ -9,7 +9,7 @@ import org.junit.Test
 /**
  * Tests JSON DSL API
  */
-class JsonDslTest {
+class JsonBuilderTest {
 
     /**
      * Tests that the [jsonObject] function creates a [JsonObject]
@@ -22,22 +22,12 @@ class JsonDslTest {
     }
 
     /**
-     * Tests that the [jsonArrayOf] function creates a [JsonArray]
-     */
-    @Test
-    fun basicJsonArray() {
-        val json: JsonArray = jsonArrayOf()
-
-        assertEquals(JsonArray(), json)
-    }
-
-    /**
      * Tests creation of a [JsonObject] with a [Char] property
      */
     @Test
     fun jsonObject_WithCharProperty() {
         val json = jsonObject {
-            property("char", 'a')
+            "char" to 'a'
         }
 
         val expected = JsonObject().apply {
@@ -53,7 +43,7 @@ class JsonDslTest {
     @Test
     fun jsonObject_WithNumberProperty() {
         val json = jsonObject {
-            property("number", 7)
+            "number" to 7
         }
 
         val expected = JsonObject().apply {
@@ -69,7 +59,7 @@ class JsonDslTest {
     @Test
     fun jsonObject_WithStringProperty() {
         val json = jsonObject {
-            property("string", "Hello")
+            "string" to "Hello"
         }
 
         val expected = JsonObject().apply {
@@ -85,7 +75,7 @@ class JsonDslTest {
     @Test
     fun jsonObject_WithBooleanProperty() {
         val json = jsonObject {
-            property("boolean", true)
+            "boolean" to true
         }
 
         val expected = JsonObject().apply {
@@ -101,7 +91,7 @@ class JsonDslTest {
     @Test
     fun jsonObject_WithNullProperty() {
         val json = jsonObject {
-            property("null", null)
+            "null" to null
         }
 
         val expected = JsonObject().apply {
@@ -117,9 +107,9 @@ class JsonDslTest {
     @Test
     fun jsonObject_WithNestedObject() {
         val json = jsonObject {
-            property("object", jsonObject {
-                property("boolean", true)
-            })
+            "object" to jsonObject {
+                "boolean" to true
+            }
         }
 
         val expected = JsonObject().apply {
@@ -137,7 +127,7 @@ class JsonDslTest {
     @Test
     fun jsonObject_WithNestedArray() {
         val json = jsonObject {
-            property("array", jsonArrayOf(true, "Hello"))
+            "array" to jsonArrayOf(true, "Hello")
         }
 
         val expected = JsonObject().apply {
@@ -156,11 +146,11 @@ class JsonDslTest {
     @Test
     fun jsonObject_WithComplexProperty() {
         val json = jsonObject {
-            property("complex", object {
+            "complex" to object {
                 val thing = "A Thing"
                 val somethingElse = "Hi"
                 override fun toString() = "$thing - $somethingElse"
-            })
+            }
         }
 
         val expected = JsonObject().apply {
@@ -170,48 +160,5 @@ class JsonDslTest {
         assertEquals(expected, json)
     }
 
-    /**
-     * Tests the creation of a [JsonArray] with a variety of elements
-     */
-    @Test
-    fun jsonArray_WithProperties() {
-        val json = jsonArrayOf(
-                true,
-                "Hello",
-                7.2,
-                'a',
-                jsonObject {
-                    property("boolean", false)
-                },
-                jsonArrayOf(
-                        19423,
-                        18432
-                ),
-                null,
-                object {
-                    val item = "Hello"
-                    val another = "Goodbye"
 
-                    override fun toString() = "$item: $another"
-                }
-        )
-
-        val expected = JsonArray().apply {
-            add(true)
-            add("Hello")
-            add(7.2)
-            add('a')
-            add(JsonObject().apply {
-                addProperty("boolean", false)
-            })
-            add(JsonArray().apply {
-                add(19423)
-                add(18432)
-            })
-            add(JsonNull.INSTANCE)
-            add("Hello: Goodbye")
-        }
-
-        assertEquals(expected, json)
-    }
 }
