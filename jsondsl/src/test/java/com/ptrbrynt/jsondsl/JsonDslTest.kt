@@ -113,22 +113,6 @@ class JsonDslTest {
     }
 
     /**
-     * Tests creation of a [JsonObject] with a [JsonElement] property
-     */
-    @Test
-    fun jsonObject_WithJsonElementProperty() {
-        val json = jsonObject {
-            property("element", jsonArrayOf() as JsonElement)
-        }
-
-        val expected = JsonObject().apply {
-            add("element", JsonArray())
-        }
-
-        assertEquals(expected, json)
-    }
-
-    /**
      * Tests creation of a [JsonObject] with a nested [JsonObject]
      */
     @Test
