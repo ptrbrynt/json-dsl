@@ -1,7 +1,6 @@
 package com.ptrbrynt.jsondsl
 
 import com.google.gson.JsonArray
-import com.google.gson.JsonElement
 import com.google.gson.JsonNull
 import com.google.gson.JsonObject
 import org.junit.Assert.assertEquals
@@ -118,9 +117,9 @@ class JsonDslTest {
     @Test
     fun jsonObject_WithNestedObject() {
         val json = jsonObject {
-            nestedObject("object") {
+            property("object", jsonObject {
                 property("boolean", true)
-            }
+            })
         }
 
         val expected = JsonObject().apply {
@@ -138,7 +137,7 @@ class JsonDslTest {
     @Test
     fun jsonObject_WithNestedArray() {
         val json = jsonObject {
-            nestedArray("array", jsonArrayOf(true, "Hello"))
+            property("array", jsonArrayOf(true, "Hello"))
         }
 
         val expected = JsonObject().apply {

@@ -50,9 +50,9 @@ You can add a nested object like this:
 
 ```kotlin
 val json: JsonObject = jsonObject {
-    nestedObject {
+    property("object", jsonObject {
         property("hello", 7)
-    }
+    })
 }
 ```
 
@@ -75,7 +75,7 @@ You can add a `JsonArray` to a `JsonObject` like this:
 
 ```kotlin
 val obj: JsonObject = jsonObject {
-    nestedArray("array", jsonArrayOf(true, "hello"))
+    property("array", jsonArrayOf(true, "hello"))
 }
 ```
 
