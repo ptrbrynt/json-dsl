@@ -17,9 +17,6 @@ jobs:
           name: Install Fastlane
           command: bundle check || bundle update && bundle install --path vendor/bundle
       - run:
-          name: Code coverage report
-          command: bundle exec fastlane coverage
-      - run:
           name: Run Tests
           command: bundle exec fastlane test
       - store_artifacts:
