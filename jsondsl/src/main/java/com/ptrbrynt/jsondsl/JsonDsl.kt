@@ -55,3 +55,12 @@ fun List<*>.toJsonArray(): JsonArray {
  * Alternative syntax for [List].[toJsonArray]. Converts the [List] into a [JsonArray].
  */
 fun jsonArrayOf(list: List<*>) = list.toJsonArray()
+
+/**
+ * Converts a [HashMap] to a [JsonObject]
+ */
+fun <X, Y> HashMap<X, Y>.toJsonObject(): JsonObject {
+    return jsonObject {
+        this@toJsonObject.forEach { t, u -> t.toString() to u }
+    }
+}
