@@ -6,6 +6,9 @@ import com.google.gson.JsonObject
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
+/**
+ * Tests code related to [JsonArray]s.
+ */
 class JsonArrayTest {
 
     /**
