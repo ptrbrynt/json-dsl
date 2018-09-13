@@ -23,7 +23,7 @@ allprojects {
 Then, in your module's `build.gradle` file, add the dependency:
 ```groovy
 dependencies {
-    implementation 'com.ptrbrynt:json-dsl:1.0'
+    implementation 'com.ptrbrynt:json-dsl:1.1.1'
 }
 ```
 
