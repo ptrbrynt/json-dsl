@@ -78,3 +78,19 @@ val obj: JsonObject = jsonObject {
 }
 ```
 
+### Conversion
+
+You can convert from a `List` to a `JsonArray` like this:
+
+```kotlin
+val jsonArray = listOf(2, 4, 6, 623).toJsonArray()
+
+// Alternatively
+val jsonArray = jsonArrayOf(listOf(2, 4, 6, 623))
+```
+
+You can also convert a `HashMap` to a `JsonObject`:
+
+```kotlin
+val obj = hashMapOf(Pair("hello", 7), Pair("goodbye", 12)).toJsonObject()
+```
